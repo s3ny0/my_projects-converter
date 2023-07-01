@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>convertor</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            color: white;
+        }
+
+        h1{
+            color: rgb(38, 80, 73);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        h2{
+            color: rgb(250, 248, 248);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        
+        .work-space{
+            height: 400px;
+            width: 350px;
+            background-color: rgb(54, 53, 53);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+    
+        }
+        
+        #input{
+            height: 70px;
+            width: 300px;
+            margin: 20px auto;
+            border-radius: 15px;
+            border: none;
+            text-align: right;
+            font-size: 2rem;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        
+        #output{
+            height: 60px;
+            width: 300px;
+            margin: 0px auto;
+            text-align: right;
+            font-size: 2rem;
+        }
+         
+        .options{
+            width: 350px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        
+        #option{
+            height: 50px;
+            width: 80px;
+            margin: 10px;
+            border: none;
+            border-radius: 15px;
+            background-color: rgb(38, 80, 73);
+            text-align: center;
+            font-size: 1rem;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CONVERTER</h1>
+    </div>
+    <div class="work-space">
+        <input type="text" id="input">
+        <h2 id="output"></h2>
+        <div class="options">
+            <button id="option" onclick="toKilos()">kilograms</button>
+            <button id="option" onclick="toPounds()">pounds</button>
+            <button id="option" onclick="toGrams()">grams</button>
+            <button id="option" onclick="toKilometers()">kilometers</button>
+            <button id="option" onclick="toMiles()">miles</button>
+            <button id="option" onclick="toMeters()">meters</button>
+            <button id="option"></button>
+            <button id="option"></button>
+            <button id="option"></button>
+            
+        </div>
+    </div>
+    
+    <script>
+        const output = document.getElementById('output');
+        const input = document.getElementById('input');
+        
+        function toKilos() {
+            let parameter = parseFloat(input.value);
+            let check = input.value.toString();
+            let kilos = 0;
+            if(check.includes("pounds")) {
+                kilos = parameter * 0.454;
+            } else if(check.includes("kilograms")) {
+                kilos = parameter * 1;
+            } else if(check.includes("grams")) {
+                kilos = parameter / 1000;
+            } else {
+                return output.textContent = "Invalid Input"
+            }
+
+            output.textContent = kilos.toFixed(2) + " kgs";
+        }
+        
+        function toPounds() {
+            let parameter = parseFloat(input.value);
+            let check = input.value.toString();
+            let pounds = 0;
+            if(check.includes("kilograms")) {
+                pounds = parameter * 2.205;
+            } else if (check.includes("grams")) {
+               pounds = parameter * 0.0022; 
+            } else if (check.includes("pounds")) {
+                pounds = parameter * 1;
+            } else {
+                return output.textContent = "Invalid Input";
+            }
+            
+            output.textContent = pounds.toFixed(2) + " lbs";
+        }
+
+        function toGrams() {
+            let parameter = parseFloat(input.value);
+            let check = input.value.toString();
+            let grams = 0;
+            if(check.includes("kilograms")) {
+                grams = parameter * 1000;
+            } else if (check.includes("pounds")) {
+               grams = parameter * 453.592; 
+            } else if(check.includes("grams")) {
+                grams = parameter * 1;
+            } else {
+                return output.textContent = "Invalid Input";
+            }
+            
+            output.textContent = grams.toFixed(2) + " grams";
+        }
+
+        function toKilometers() {
+            let parameter = parseFloat(input.value);
+            let check = input.value.toString();
+            let kilometers = 0;
+            if(check.includes("miles")) {
+                kilometers = parameter * 1.609;
+            } else if(check.includes("kilometers")) {
+                kilometers = parameter * 1;
+            } else if (check.includes("meters")) {
+               kilometers = parameter / 1000; 
+            } else {
+                return output.textContent = "Invalid Input";
+            }
+            
+            output.textContent = kilometers.toFixed(2) + " km";
+        }
+
+        function toMiles() {
+            let parameter = parseFloat(input.value);
+            let check = input.value.toString();
+            let miles = 0;
+            if(check.includes("miles")) {
+                miles = parameter * 1;
+            } else if(check.includes("kilometers")) {
+                miles = parameter * 0.621371;
+            } else if (check.includes("meters")) {
+               miles = parameter * 0.000621371; 
+            } else {
+                return output.textContent = "Invalid Input";
+            }
+            
+            output.textContent = miles.toFixed(2) + " miles";
+        }
+
+        function toMeters() {
+            let parameter = parseFloat(input.value);
+            let check = input.value.toString();
+            let meters = 0;
+            if(check.includes("miles")) {
+                meters = parameter * 1609.34;
+            } else if(check.includes("kilometers")) {
+                meters = parameter * 1000;
+            } else if (check.includes("meters")) {
+               meters = parameter * 1; 
+            } else {
+                return output.textContent = "Invalid Input";
+            }
+            
+            output.textContent = meters.toFixed(2) + " meters";
+        }
+
+    </script>
+</body>
+</html>
